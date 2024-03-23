@@ -195,8 +195,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.49, y: 37.673}
-  m_SizeDelta: {x: 285.57, y: 50}
+  m_AnchoredPosition: {x: -0.63, y: 37.673}
+  m_SizeDelta: {x: 438.6, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &150695464
 GameObject:
@@ -409,10 +409,9 @@ GameObject:
   - component: {fileID: 280733236}
   - component: {fileID: 280733235}
   - component: {fileID: 280733234}
-  - component: {fileID: 280733237}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -491,18 +490,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &280733237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 280733233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &384870545
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,8 +524,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.49, y: -6.2254}
-  m_SizeDelta: {x: 285.57, y: 50}
+  m_AnchoredPosition: {x: -0.63, y: -6.2254}
+  m_SizeDelta: {x: 438.6, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &384870547
 CanvasRenderer:
@@ -687,8 +674,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -958.1566, y: -536.25775}
-  m_SizeDelta: {x: 300.3865, y: 144.4465}
+  m_AnchoredPosition: {x: -957.3721, y: -536.25775}
+  m_SizeDelta: {x: 457.2987, y: 144.4465}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &446756611
 MonoBehaviour:
@@ -1859,8 +1846,8 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_VertexColorAlwaysGammaSpace: 1
+  m_AdditionalShaderChannelsFlag: 7
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -2733,8 +2720,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.49, y: -48.277}
-  m_SizeDelta: {x: 285.57, y: 47.89}
+  m_AnchoredPosition: {x: -0.63, y: -48.277}
+  m_SizeDelta: {x: 438.6, y: 47.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1941127809
 CanvasRenderer:
@@ -2912,10 +2899,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2049447142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf3fa8a51782bf4f819db99f98292c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a4dc728242b00b4ab16adc9abf64e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assetName: LayerCollisionMatrix3D
+  assetName: TLForgeDemoMatrix3D
   importationPath: Assets/EditorData/CollisionData/3D/
   startImport: 0
   exportationPath: Assets/EditorData/CollisionData/3D/
@@ -2929,10 +2916,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2049447142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60b32d29598ca9f479ff8a49660ef742, type: 3}
+  m_Script: {fileID: 11500000, guid: 9be32037bd5cb344185ecc1e155affef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assetName: LayerCollisionMatrix2D
+  assetName: TLForgeDemoMatrix2D
   importationPath: Assets/EditorData/CollisionData/2D/
   startImport: 0
   exportationPath: Assets/EditorData/CollisionData/2D/
@@ -2946,16 +2933,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2049447142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84430a227942c7547b5200f34404f51d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1536b23f45fad5f468b21fd40b309c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 921872363}
-  tagName: NewTag
+  tagName: TLForgeDemoTag
   createCustomTag: 0
   applyCustomTag: 0
   create_ApplyCustomTag: 0
   deleteCustomTag: 0
-  layerName: NewLayer
+  layerName: TLForgeDemoLayer
   createCustomLayer: 0
   applyCustomLayer: 0
   create_ApplyCustomLayer: 0

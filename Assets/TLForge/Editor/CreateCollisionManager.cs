@@ -7,21 +7,21 @@ public class CreateCollisionManager
     [MenuItem("GameObject/TLForge/CollisionManager2D", false, 1)]
     private static void CreateCollisionManager2D()
     {
-        CreateGameObject<LayerCollisionMatrix2D>("CollisionManager2D");
+        CreateGameObject<TLFLayerCollisionMatrix2D>("CollisionManager2D");
     }
 
     [MenuItem("GameObject/TLForge/CollisionManager3D", false, 2)]
     private static void CreateCollisionManager3D()
     {
-        CreateGameObject<LayerCollisionMatrix3D>("CollisionManager3D");
+        CreateGameObject<TLFLayerCollisionMatrix3D>("CollisionManager3D");
     }
 
     [MenuItem("GameObject/TLForge/Forge", false, 0)]
     private static void CreateForge()
     {
-        GameObject forge = CreateGameObject<CustomProperties>("TLForge");
-        forge.AddComponent<LayerCollisionMatrix2D>();
-        forge.AddComponent<LayerCollisionMatrix3D>();
+        GameObject forge = CreateGameObject<TLFCustomProperties>("TLForge");
+        forge.AddComponent<TLFLayerCollisionMatrix2D>();
+        forge.AddComponent<TLFLayerCollisionMatrix3D>();
     }
 
     private static GameObject CreateGameObject<T>(string name) where T : MonoBehaviour

@@ -41,20 +41,18 @@ public class CustomProjectSettingEditor : CustomInformationEditor
         // Draw the default Inspector for the base class
         DrawDefaultInspector();
 
+        GUILayout.Space(5f);
+
         // Show buttons for bool fields
         foreach (FieldInfo field in BoolFields)
         {
-            bool fieldValue = (bool)field.GetValue(target);
             if (GUILayout.Button(TransformButtonText(field.Name)))
             {
                 field.SetValue(target, true);
 
                 // Execute the CheckStatus method
                 MethodInfo checkStatusMethod = target.GetType().GetMethod("CheckStatus", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                if (checkStatusMethod != null)
-                {
-                    checkStatusMethod.Invoke(target, null);
-                }
+                checkStatusMethod?.Invoke(target, null);
             }
 
             GUILayout.Space(5f);

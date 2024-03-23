@@ -195,8 +195,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.5, y: 41.1}
-  m_SizeDelta: {x: 292.49, y: 50}
+  m_AnchoredPosition: {x: 0.8138, y: 41.1}
+  m_SizeDelta: {x: 450.1141, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &49200744
 GameObject:
@@ -210,9 +210,9 @@ GameObject:
   - component: {fileID: 49200747}
   - component: {fileID: 49200746}
   - component: {fileID: 49200745}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TLForge
-  m_TagString: Untagged
+  m_TagString: TLForgeDemoTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,10 +226,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 49200744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf3fa8a51782bf4f819db99f98292c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a4dc728242b00b4ab16adc9abf64e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assetName: LayerCollisionMatrix3D
+  assetName: TLForgeDemoMatrix3D
   importationPath: Assets/EditorData/CollisionData/3D/
   startImport: 0
   exportationPath: Assets/EditorData/CollisionData/3D/
@@ -243,10 +243,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 49200744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60b32d29598ca9f479ff8a49660ef742, type: 3}
+  m_Script: {fileID: 11500000, guid: 9be32037bd5cb344185ecc1e155affef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assetName: LayerCollisionMatrix2D
+  assetName: TLForgeDemoMatrix2D
   importationPath: Assets/EditorData/CollisionData/2D/
   startImport: 0
   exportationPath: Assets/EditorData/CollisionData/2D/
@@ -260,16 +260,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 49200744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84430a227942c7547b5200f34404f51d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1536b23f45fad5f468b21fd40b309c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 921872363}
-  tagName: NewTag
+  tagName: TLForgeDemoTag
   createCustomTag: 0
   applyCustomTag: 0
   create_ApplyCustomTag: 0
   deleteCustomTag: 0
-  layerName: NewLayer
+  layerName: TLForgeDemoLayer
   createCustomLayer: 0
   applyCustomLayer: 0
   create_ApplyCustomLayer: 0
@@ -857,8 +857,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 134.33862, y: 56.223267}
-  m_SizeDelta: {x: 300.3865, y: 144.4465}
+  m_AnchoredPosition: {x: 217.83667, y: 56.223267}
+  m_SizeDelta: {x: 467.3828, y: 144.4465}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &446756611
 MonoBehaviour:
@@ -1028,8 +1028,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.5, y: -3.2229614}
-  m_SizeDelta: {x: 292.49, y: 50}
+  m_AnchoredPosition: {x: 0.8138, y: -3.2229614}
+  m_SizeDelta: {x: 450.1141, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &546467510
 CanvasRenderer:
@@ -1265,8 +1265,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.5, y: -45.999878}
-  m_SizeDelta: {x: 292.49, y: 50}
+  m_AnchoredPosition: {x: 0.8138, y: -45.999878}
+  m_SizeDelta: {x: 450.1141, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &631543499
 CanvasRenderer:

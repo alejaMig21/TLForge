@@ -94,6 +94,17 @@ public static class EditorLayerManager
             }
         }
     }
+    public static void DeleteLayer(GameObject obj, string layerName)
+    {
+        // In case the Target GameObject is in the custom Layer
+        if (IsGameObjectInLayer(obj, layerName))
+        {
+            // Target will be on Default Layer
+            SetLayerByIndex(obj, 0);
+        }
+        // Custom Layer gets deleted
+        DeleteLayer(layerName);
+    }
     #endregion
 
     #region CHECK EXISTENCE

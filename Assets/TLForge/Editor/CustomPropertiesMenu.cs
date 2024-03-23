@@ -37,6 +37,15 @@ public class CustomPropertiesMenu : EditorWindow
             GUILayout.Label("No object selected!");
         }
 
+        if(TagName == string.Empty)
+        {
+            TagName = "DefaultTag";
+        }
+        if (LayerName == string.Empty)
+        {
+            LayerName = "DefaultLayer";
+        }
+
         SetGUIEnabledState(SelectedObj != null);
 
         TagName = EditorGUILayout.TextField("Tag Name", TagName);
@@ -68,8 +77,7 @@ public class CustomPropertiesMenu : EditorWindow
 
         if (GUILayout.Button("DELETE CUSTOM TAG"))
         {
-            EditorTagManager.DeleteTag(TagName);
-            EditorTagManager.SetTagByIndex(SelectedObj, 0);
+            EditorTagManager.DeleteTag(SelectedObj, TagName);
         }
 
         GUILayout.Space(5);
@@ -106,8 +114,7 @@ public class CustomPropertiesMenu : EditorWindow
 
         if (GUILayout.Button("DELETE CUSTOM LAYER"))
         {
-            EditorLayerManager.DeleteLayer(LayerName);
-            EditorLayerManager.SetLayerByIndex(SelectedObj, 0);
+            EditorLayerManager.DeleteLayer(SelectedObj, LayerName);
         }
 
         GUILayout.Space(10);

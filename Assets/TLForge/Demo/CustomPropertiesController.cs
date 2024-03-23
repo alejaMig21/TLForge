@@ -15,7 +15,7 @@ public class CustomPropertiesController : MonoBehaviour
     [SerializeField]
     private GameObject targetObject;
     [SerializeField]
-    private CustomProperties customProperties;
+    private TLFCustomProperties customProperties;
     #endregion
 
     #region PROPERTIES
@@ -24,7 +24,7 @@ public class CustomPropertiesController : MonoBehaviour
     public Button NewLayerButton { get => newLayerButton; set => newLayerButton = value; }
     public Button OriginalLayerButton { get => originalLayerButton; set => originalLayerButton = value; }
     public GameObject TargetObject { get => targetObject; set => targetObject = value; }
-    public CustomProperties CustomProperties { get => customProperties; set => customProperties = value; }
+    public TLFCustomProperties CustomProperties { get => customProperties; set => customProperties = value; }
     #endregion
 
     #region METHODS
@@ -36,8 +36,8 @@ public class CustomPropertiesController : MonoBehaviour
             return;
         }
 
-        NewTagButton.onClick.AddListener(() => CustomProperties.CustomizeThenApplyTag("NewTag"));
-        NewLayerButton.onClick.AddListener(() => CustomProperties.CustomizeThenApplyLayer("NewLayer"));
+        NewTagButton.onClick.AddListener(() => CustomProperties.CustomizeThenApplyTag("TLForgeDemoTag"));
+        NewLayerButton.onClick.AddListener(() => CustomProperties.CustomizeThenApplyLayer("TLForgeDemoLayer"));
         OriginalTagButton.onClick.AddListener(() => CustomProperties.CustomizeThenApplyTag("Untagged"));
         OriginalLayerButton.onClick.AddListener(() => CustomProperties.CustomizeThenApplyLayer("Default"));
     }

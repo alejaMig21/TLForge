@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 /// Class that generates and removes Layers faster and easier.
 /// </summary>
 #if UNITY_EDITOR
-[RequireComponent(typeof(LayerCollisionMatrix2D), typeof(LayerCollisionMatrix3D))]
+[RequireComponent(typeof(TLFLayerCollisionMatrix2D), typeof(TLFLayerCollisionMatrix3D))]
 #endif
 public class CustomLayer : CustomProjectSetting, ICustomLayer
 {

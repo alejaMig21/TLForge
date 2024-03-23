@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Class to customize Tags & Layers
 /// </summary>
-public class CustomProperties : CustomProjectSetting, ICustomTag, ICustomLayer
+public class TLFCustomProperties : CustomProjectSetting, ICustomTag, ICustomLayer
 {
     #region FIELDS
 
@@ -128,14 +128,7 @@ public class CustomProperties : CustomProjectSetting, ICustomTag, ICustomLayer
 #if UNITY_EDITOR
         if (DeleteCustomTag)
         {
-            // In case the Target GameObject has the custom Tag
-            if (EditorTagManager.DoesGameObjectHasTag(Target, TagName))
-            {
-                // Target will be Untagged
-                EditorTagManager.SetTagByIndex(Target, 0);
-            }
-            // Custom Tag gets deleted
-            EditorTagManager.DeleteTag(TagName);
+            EditorTagManager.DeleteTag(Target,TagName);
             DeleteCustomTag = false;
         }
 #endif
@@ -196,14 +189,7 @@ public class CustomProperties : CustomProjectSetting, ICustomTag, ICustomLayer
 #if UNITY_EDITOR
         if (DeleteCustomLayer)
         {
-            // In case the Target GameObject is in the custom Layer
-            if (EditorLayerManager.IsGameObjectInLayer(Target, LayerName))
-            {
-                // Target will be on Default Layer
-                EditorLayerManager.SetLayerByIndex(Target, 0);
-            }
-            // Custom Layer gets deleted
-            EditorLayerManager.DeleteLayer(LayerName);
+            EditorLayerManager.DeleteLayer(Target, LayerName);
             DeleteCustomLayer = false;
         }
 #endif

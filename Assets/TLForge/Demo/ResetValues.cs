@@ -9,7 +9,7 @@ public class ResetValues : MonoBehaviour
     [SerializeField]
     private GameObject targetObject;
     [SerializeField]
-    private CustomProperties customProperties;
+    private TLFCustomProperties customProperties;
     private Vector3 initialPosition = Vector3.zero;
     [SerializeField]
     private Rigidbody2D rBody2D = null;
@@ -20,7 +20,7 @@ public class ResetValues : MonoBehaviour
     #region PROPERTIES
     public Button ResetButton { get => resetButton; set => resetButton = value; }
     public GameObject TargetObject { get => targetObject; set => targetObject = value; }
-    public CustomProperties CustomProperties { get => customProperties; set => customProperties = value; }
+    public TLFCustomProperties CustomProperties { get => customProperties; set => customProperties = value; }
     public Vector3 InitialPosition { get => initialPosition; set => initialPosition = value; }
     public Rigidbody2D RBody2D { get => rBody2D; set => rBody2D = value; }
     public Rigidbody RBody3D { get => rBody3D; set => rBody3D = value; }

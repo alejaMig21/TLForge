@@ -2,7 +2,7 @@ using UnityEngine;
 using System.IO;
 
 #if UNITY_EDITOR
-public class LayerCollisionMatrix2D : MonoBehaviour, IDataExporter
+public class TLFLayerCollisionMatrix2D : MonoBehaviour, IDataExporter
 {
     #region FIELDS
     [SerializeField]

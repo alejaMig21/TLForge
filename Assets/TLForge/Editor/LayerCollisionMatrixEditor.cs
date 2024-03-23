@@ -2,12 +2,12 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(LayerCollisionMatrix2D), true)]
+[CustomEditor(typeof(TLFLayerCollisionMatrix2D), true)]
 public class LayerCollisionMatrixEditor : CustomInformationEditor
 {
     #region FIELDS
     [SerializeField]
-    private LayerCollisionMatrix2D collisionMatrixScript;
+    private TLFLayerCollisionMatrix2D collisionMatrixScript;
     [SerializeField]
     private bool[,] collisionMatrix = new bool[32, 32];
     private const short SPACE_BETWEEN_BUTTONS = 5;
@@ -15,7 +15,7 @@ public class LayerCollisionMatrixEditor : CustomInformationEditor
     #endregion
 
     #region PROPERTIES
-    public LayerCollisionMatrix2D CollisionMatrixScript { get => collisionMatrixScript; set => collisionMatrixScript = value; }
+    public TLFLayerCollisionMatrix2D CollisionMatrixScript { get => collisionMatrixScript; set => collisionMatrixScript = value; }
     public bool[,] CollisionMatrix { get => collisionMatrix; set => collisionMatrix = value; }
     #endregion
 
@@ -40,7 +40,7 @@ public class LayerCollisionMatrixEditor : CustomInformationEditor
     {
         base.SetUpValues();
 
-        CollisionMatrixScript = (LayerCollisionMatrix2D)target;
+        CollisionMatrixScript = (TLFLayerCollisionMatrix2D)target;
 
         LoadCollisionMatrix(true);
     }

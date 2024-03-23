@@ -55,6 +55,18 @@ public static class EditorTagManager
 
         Debug.LogError("Tag not found.");
     }
+
+    public static void DeleteTag(GameObject obj, string tagName)
+    {
+        // In case the Target GameObject has the custom Tag
+        if (DoesGameObjectHasTag(obj, tagName))
+        {
+            // Target will be Untagged
+            SetTagByIndex(obj, 0);
+        }
+        // Custom Tag gets deleted
+        DeleteTag(tagName);
+    }
     #endregion
 
     #region CHECK EXISTENCE
