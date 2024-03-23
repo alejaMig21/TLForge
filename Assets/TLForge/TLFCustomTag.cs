@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Class that generates and removes Tags faster and easier.
 /// </summary>
-public class CustomTag : CustomProjectSetting, ICustomTag
+public class TLFCustomTag : TLFCustomProjectSetting, ICustomTag
 {
     #region FIELDS
     [SerializeField]

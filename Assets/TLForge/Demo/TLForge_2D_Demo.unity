@@ -213,7 +213,7 @@ GameObject:
   m_Layer: 8
   m_Name: TLForge
   m_TagString: TLForgeDemoTag
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: ae7287b9156648c46991dd9365b80ea6, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

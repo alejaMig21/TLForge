@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Class to customize Tags & Layers
 /// </summary>
-public class TLFCustomProperties : CustomProjectSetting, ICustomTag, ICustomLayer
+public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomLayer
 {
     #region FIELDS
 

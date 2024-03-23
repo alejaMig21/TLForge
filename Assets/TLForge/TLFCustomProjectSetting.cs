@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Abstract class intended to customize settings like Tags or Layers
 /// </summary>
-public abstract class CustomProjectSetting : MonoBehaviour
+public abstract class TLFCustomProjectSetting : MonoBehaviour
 {
     #region FIELDS
     [SerializeField]

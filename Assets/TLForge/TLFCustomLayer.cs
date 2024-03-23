@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 /// <summary>
 /// Class that generates and removes Layers faster and easier.
@@ -7,7 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 #if UNITY_EDITOR
 [RequireComponent(typeof(TLFLayerCollisionMatrix2D), typeof(TLFLayerCollisionMatrix3D))]
 #endif
-public class CustomLayer : CustomProjectSetting, ICustomLayer
+public class TLFCustomLayer : TLFCustomProjectSetting, ICustomLayer
 {
     #region FIELDS
     [SerializeField]

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-public class CustomPropertiesMenu : EditorWindow
+public class TLFCustomPropertiesMenu : EditorWindow
 {
     #region FIELDS
     private string tagName = "NewTag";
@@ -19,7 +19,7 @@ public class CustomPropertiesMenu : EditorWindow
     [MenuItem("GameObject/TL -QUICK- Forge", false, 0)]
     static void Init()
     {
-        CustomPropertiesMenu window = (CustomPropertiesMenu)EditorWindow.GetWindow(typeof(CustomPropertiesMenu), true, "CUSTOMIZE PROPERTIES");
+        TLFCustomPropertiesMenu window = (TLFCustomPropertiesMenu)EditorWindow.GetWindow(typeof(TLFCustomPropertiesMenu), true, "CUSTOMIZE PROPERTIES");
         window.Show();
         window.SelectedObj = Selection.activeGameObject;
     }

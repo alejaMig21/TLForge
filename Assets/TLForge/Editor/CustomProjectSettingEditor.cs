@@ -4,7 +4,7 @@ using System;
 using System.Reflection;
 using System.Linq;
 
-[CustomEditor(typeof(CustomProjectSetting), true)]
+[CustomEditor(typeof(TLFCustomProjectSetting), true)]
 public class CustomProjectSettingEditor : CustomInformationEditor
 {
     #region FIELDS
