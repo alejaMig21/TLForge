@@ -50,9 +50,12 @@ public class LayerCollisionMatrixEditor : CustomInformationEditor
 
         DrawLegend();
 
+        DrawMatrix();
+
         GUILayout.Space(SPACE_BETWEEN_AREAS);
 
         GUILayout.BeginHorizontal();
+
         if (GUILayout.Button(TransformButtonText("Enable All Collisions")))
         {
             EnableAllCollisions();
@@ -64,6 +67,7 @@ public class LayerCollisionMatrixEditor : CustomInformationEditor
         {
             DisableAllCollisions();
         }
+
         GUILayout.EndHorizontal();
 
         GUILayout.Space(SPACE_BETWEEN_BUTTONS);
@@ -121,7 +125,9 @@ public class LayerCollisionMatrixEditor : CustomInformationEditor
             }
         }
         EditorGUILayout.EndHorizontal(); // Ends row of layer indexes
-
+    }
+    private void DrawMatrix()
+    {
         // Draw the layers and checkboxes below the indexes
         for (int i = 0; i < CollisionMatrix.GetLength(0); i++)
         {

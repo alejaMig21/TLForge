@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 921872363}
+  loadValues: 0
   tagName: TLForgeDemoTag
   createCustomTag: 0
   applyCustomTag: 0

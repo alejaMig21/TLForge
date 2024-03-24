@@ -16,5 +16,9 @@ public abstract class TLFCustomProjectSetting : MonoBehaviour
 
     #region METHODS
     public abstract void CheckStatus();
+    /// <summary>
+    /// Editor method
+    /// </summary>
+    public abstract void LoadCurrentValues();
     #endregion
 }

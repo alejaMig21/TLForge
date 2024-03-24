@@ -12,6 +12,8 @@ public class TLFCustomLayer : TLFCustomProjectSetting, ICustomLayer
     [SerializeField]
     private string layerName = "NewLayer";
     [SerializeField, HideInInspector]
+    private bool loadLayer = false;
+    [SerializeField, HideInInspector]
     private bool createCustomLayer = false;
     [SerializeField, HideInInspector]
     private bool applyCustomLayer = false;
@@ -22,6 +24,7 @@ public class TLFCustomLayer : TLFCustomProjectSetting, ICustomLayer
     #endregion
 
     #region PROPERTIES
+    public bool LoadLayer { get => loadLayer; set => loadLayer = value; }
     public string LayerName { get => layerName; set => layerName = value; }
     public bool CreateCustomLayer { set => createCustomLayer = value; get => createCustomLayer; }
     public bool ApplyCustomLayer { get => applyCustomLayer; set => applyCustomLayer = value; }
@@ -36,12 +39,29 @@ public class TLFCustomLayer : TLFCustomProjectSetting, ICustomLayer
     }
     public override void CheckStatus()
     {
-#if UNITY_EDITOR
+        // editor
+        LoadCurrentValues();
+
         CustomizeLayer();
         DeleteCustomizedLayer();
-#endif
+        // editor
+
         ApplyCustomizedLayer();
         CustomizeThenApplyLayer();
+    }
+    /// <summary>
+    /// Editor method
+    /// </summary>
+    public override void LoadCurrentValues()
+    {
+#if UNITY_EDITOR
+        if (LoadLayer)
+        {
+            LayerName = LayerMask.LayerToName(Target.layer);
+
+            LoadLayer = false;
+        }
+#endif
     }
     public void CustomizeLayer()
     {

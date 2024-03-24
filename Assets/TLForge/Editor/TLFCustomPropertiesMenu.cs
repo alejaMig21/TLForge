@@ -53,6 +53,14 @@ public class TLFCustomPropertiesMenu : EditorWindow
 
         GUILayout.Space(10);
 
+        if (GUILayout.Button("LOAD CURRENT VALUES"))
+        {
+            TagName = SelectedObj.tag;
+            LayerName = LayerMask.LayerToName(SelectedObj.layer);
+        }
+
+        GUILayout.Space(5);
+
         if (GUILayout.Button("CREATE CUSTOM TAG"))
         {
             EditorTagManager.AddTag(TagName);

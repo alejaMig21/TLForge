@@ -8,6 +8,9 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
 {
     #region FIELDS
 
+    [SerializeField, HideInInspector]
+    private bool loadValues = false;
+
     #region TAG
     [SerializeField]
     private string tagName = "NewTag";
@@ -38,6 +41,8 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
 
     #region PROPERTIES
 
+    public bool LoadValues { get => loadValues; set => loadValues = value; }
+
     #region TAG
     public string TagName { get => tagName; set => tagName = value; }
     public bool CreateCustomTag { set => createCustomTag = value; get => createCustomTag; }
@@ -67,22 +72,43 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
     }
     public override void CheckStatus()
     {
-#if UNITY_EDITOR
+        // editor
+        LoadCurrentValues();
+
         CustomizeTag();
         DeleteCustomizedTag();
-#endif
-        ApplyCustomizedTag();
-        CustomizeThenApplyTag();
-
-#if UNITY_EDITOR
         CustomizeLayer();
         DeleteCustomizedLayer();
-#endif
+        // editor
+
+        ApplyCustomizedTag();
+        CustomizeThenApplyTag();
         ApplyCustomizedLayer();
         CustomizeThenApplyLayer();
     }
 
+    /// <summary>
+    /// Editor method
+    /// </summary>
+    public override void LoadCurrentValues()
+    {
+#if UNITY_EDITOR
+        if (LoadValues)
+        {
+            TagName = Target.tag;
+            LayerName = LayerMask.LayerToName(Target.layer);
+
+            EditorGUIUtility.PingObject(Target);
+
+            LoadValues = false;
+        }
+#endif
+    }
+
     #region TAG
+    /// <summary>
+    /// Editor method
+    /// </summary>
     public void CustomizeTag()
     {
 #if UNITY_EDITOR
@@ -123,12 +149,15 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
 
         CustomizeThenApplyTag();
     }
+    /// <summary>
+    /// Editor method
+    /// </summary>
     public void DeleteCustomizedTag()
     {
 #if UNITY_EDITOR
         if (DeleteCustomTag)
         {
-            EditorTagManager.DeleteTag(Target,TagName);
+            EditorTagManager.DeleteTag(Target, TagName);
             DeleteCustomTag = false;
         }
 #endif
@@ -136,6 +165,9 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
     #endregion
 
     #region LAYER
+    /// <summary>
+    /// Editor method
+    /// </summary>
     public void CustomizeLayer()
     {
 #if UNITY_EDITOR
@@ -184,6 +216,9 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
 
         CustomizeThenApplyLayer();
     }
+    /// <summary>
+    /// Editor method
+    /// </summary>
     public void DeleteCustomizedLayer()
     {
 #if UNITY_EDITOR

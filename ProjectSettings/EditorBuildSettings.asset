@@ -4,5 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/TLForge/Demo/TLForge_2D_Demo.unity
+    guid: f68d505fe61424c47a379fb1ec492d17
+  - enabled: 1
+    path: Assets/TLForge/Demo/TLForge_3D_Demo.unity
+    guid: 618a2198f7dc03746b2232e65ea5d1fa
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

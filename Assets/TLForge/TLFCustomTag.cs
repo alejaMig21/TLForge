@@ -9,6 +9,8 @@ public class TLFCustomTag : TLFCustomProjectSetting, ICustomTag
     [SerializeField]
     private string tagName = "NewTag";
     [SerializeField, HideInInspector]
+    private bool loadTag = false;
+    [SerializeField, HideInInspector]
     private bool createCustomTag = false;
     [SerializeField, HideInInspector]
     private bool applyCustomTag = false;
@@ -19,6 +21,7 @@ public class TLFCustomTag : TLFCustomProjectSetting, ICustomTag
     #endregion
 
     #region PROPERTIES
+    public bool LoadTag { get => loadTag; set => loadTag = value; }
     public string TagName { get => tagName; set => tagName = value; }
     public bool CreateCustomTag { set => createCustomTag = value; get => createCustomTag; }
     public bool ApplyCustomTag { get => applyCustomTag; set => applyCustomTag = value; }
@@ -33,12 +36,29 @@ public class TLFCustomTag : TLFCustomProjectSetting, ICustomTag
     }
     public override void CheckStatus()
     {
-#if UNITY_EDITOR
+        // editor
+        LoadCurrentValues();
+
         CustomizeTag();
         DeleteCustomizedTag();
-#endif
+        // editor
+
         ApplyCustomizedTag();
         CustomizeThenApplyTag();
+    }
+    /// <summary>
+    /// Editor method
+    /// </summary>
+    public override void LoadCurrentValues()
+    {
+#if UNITY_EDITOR
+        if (LoadTag)
+        {
+            TagName = Target.tag;
+
+            LoadTag = false;
+        }
+#endif
     }
     public void CustomizeTag()
     {
