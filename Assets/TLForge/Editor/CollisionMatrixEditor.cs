@@ -2,12 +2,12 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(TLFLayerCollisionMatrix2D), true)]
-public class LayerCollisionMatrixEditor : CustomInformationEditor
+[CustomEditor(typeof(TLFCollisionMatrix2D), true)]
+public class CollisionMatrixEditor : CustomInformationEditor
 {
     #region FIELDS
     [SerializeField]
-    private TLFLayerCollisionMatrix2D collisionMatrixScript;
+    private TLFCollisionMatrix2D collisionMatrixScript;
     [SerializeField]
     private bool[,] collisionMatrix = new bool[32, 32];
     private const short SPACE_BETWEEN_BUTTONS = 5;
@@ -15,7 +15,7 @@ public class LayerCollisionMatrixEditor : CustomInformationEditor
     #endregion
 
     #region PROPERTIES
-    public TLFLayerCollisionMatrix2D CollisionMatrixScript { get => collisionMatrixScript; set => collisionMatrixScript = value; }
+    public TLFCollisionMatrix2D CollisionMatrixScript { get => collisionMatrixScript; set => collisionMatrixScript = value; }
     public bool[,] CollisionMatrix { get => collisionMatrix; set => collisionMatrix = value; }
     #endregion
 
@@ -40,9 +40,14 @@ public class LayerCollisionMatrixEditor : CustomInformationEditor
     {
         base.SetUpValues();
 
-        CollisionMatrixScript = (TLFLayerCollisionMatrix2D)target;
+        CollisionMatrixScript = target as TLFCollisionMatrix2D;
+        
+        if(CollisionMatrixScript == null)
+        {
+            return;
+        }
 
-        LoadCollisionMatrix(true);
+        LoadCollisionMatrixWithExtension(true);
     }
     protected void DrawMatrixFramework()
     {
@@ -82,30 +87,40 @@ public class LayerCollisionMatrixEditor : CustomInformationEditor
 
         if (GUILayout.Button(TransformButtonText("ImportMatrix")))
         {
-            LoadCollisionMatrix(true);
+            LoadCollisionMatrixWithExtension(true);
         }
 
         GUILayout.Space(SPACE_BETWEEN_BUTTONS);
 
-        if (GUILayout.Button("IMPORT EXISTING LAYER"))
+        if (GUILayout.Button(TransformButtonText("ImportExistingPreset")))
         {
-            string path = EditorUtility.OpenFilePanel("Select Existing Layer", CollisionMatrixScript.ImportationPath, "json");
-            if (!string.IsNullOrEmpty(path))
+            // Open File Panel based on CollisionMatrixScript.Root
+            string path = EditorUtility.OpenFilePanel("Select Existing Preset", CollisionMatrixScript.Root, "json");
+
+            if (path == string.Empty)
             {
-                // Converts the absolute file path to a path relative to Assets
-                if (path.StartsWith(Application.dataPath))
-                {
-                    string relativePath = "Assets" + path.Substring(Application.dataPath.Length);
-                    // Extract file name and folder path
-                    int lastSlash = relativePath.LastIndexOf("/");
-                    CollisionMatrixScript.ExportationPath = relativePath.Substring(0, lastSlash + 1);
-                    CollisionMatrixScript.ImportationPath = CollisionMatrixScript.ExportationPath; // Map the same path to ImportationPath
-                    CollisionMatrixScript.AssetName = relativePath.Substring(lastSlash + 1);
+                return;
+            }
 
-                    LoadCollisionMatrix(false);
+            // Check if the selected path is valid
+            if (path.Contains(CollisionMatrixScript.Root))
+            {
+                // Convert absolute file path to relative path within Assets
+                string relativePath = "Assets" + path[Application.dataPath.Length..];
 
-                    CollisionMatrixScript.AssetName = Path.GetFileNameWithoutExtension(CollisionMatrixScript.AssetName);
-                }
+                CollisionMatrixScript.ExportationPath = relativePath[..(relativePath.LastIndexOf("/") + 1)];
+                CollisionMatrixScript.ImportationPath = CollisionMatrixScript.ExportationPath;
+                CollisionMatrixScript.AssetName = Path.GetFileName(relativePath);
+
+                LoadCollisionMatrixWithExtension(false);
+
+                // Update the asset name by removing the file extension
+                CollisionMatrixScript.AssetName = Path.GetFileNameWithoutExtension(CollisionMatrixScript.AssetName);
+            }
+            else
+            {
+                // Show error if selection is invalid or not within Resources folder
+                Debug.LogError("The selected file must be within the " + CollisionMatrixScript.Root + "folder.");
             }
         }
     }
@@ -153,23 +168,23 @@ public class LayerCollisionMatrixEditor : CustomInformationEditor
         CollisionMatrixScript.ExportationPath = EditorGUILayout.TextField("Exportation Path", CollisionMatrixScript.ExportationPath);
         if (string.IsNullOrEmpty(CollisionMatrixScript.ExportationPath))
         {
-            CollisionMatrixScript.ExportationPath = "Assets/"; // Make sure you have a default value
+            CollisionMatrixScript.ExportationPath = CollisionMatrixScript.Root; // Make sure you have a default value
         }
 
         CollisionMatrixScript.ImportationPath = EditorGUILayout.TextField("Importation Path", CollisionMatrixScript.ImportationPath);
         if (string.IsNullOrEmpty(CollisionMatrixScript.ImportationPath))
         {
-            CollisionMatrixScript.ImportationPath = "Assets/"; // Make sure you have a default value
+            CollisionMatrixScript.ImportationPath = CollisionMatrixScript.Root; // Make sure you have a default value
         }
 
         // Add buttons to select the import and export path
         GUILayout.Space(20);
 
-        CollisionMatrixScript.ExportationPath = SelectPath("SELECT EXPORT PATH", "Select Export Folder", CollisionMatrixScript.ExportationPath);
+        CollisionMatrixScript.ExportationPath = SelectPath("Select Export Path", "Select Export Folder", CollisionMatrixScript.ExportationPath);
 
         GUILayout.Space(5);
 
-        CollisionMatrixScript.ImportationPath = SelectPath("SELECT IMPORT PATH", "Select Import Folder", CollisionMatrixScript.ImportationPath);
+        CollisionMatrixScript.ImportationPath = SelectPath("Select Import Path", "Select Import Folder", CollisionMatrixScript.ImportationPath);
 
         GUILayout.Space(20);
     }
@@ -180,22 +195,33 @@ public class LayerCollisionMatrixEditor : CustomInformationEditor
     /// <param name="windowName"></param>
     /// <param name="Path"></param>
     /// <returns></returns>
-    private string SelectPath(string buttonName, string windowName, string Path)
+    private string SelectPath(string buttonName, string windowName, string defaultPath)
     {
-        if (GUILayout.Button(buttonName))
+        if (GUILayout.Button(TransformButtonText(buttonName)))
         {
-            string path = EditorUtility.SaveFolderPanel(windowName, Path, "");
-            if (!string.IsNullOrEmpty(path))
+            // Ensure initial path is within Resources folder
+            string resourcesPath = Application.dataPath + "/Resources";
+            if (!Directory.Exists(resourcesPath))
             {
-                // Converts the absolute file path to a path relative to Assets
-                if (path.StartsWith(Application.dataPath))
-                {
-                    path = "Assets" + path.Substring(Application.dataPath.Length) + "/";
-                }
-                Path = path;
+                Directory.CreateDirectory(resourcesPath);
+            }
+
+            string path = EditorUtility.SaveFolderPanel(windowName, resourcesPath, "");
+
+            // Verifies if path is within Resources folder
+            if (path.StartsWith(resourcesPath))
+            {
+                // Converts the absolute path of the file to a path relative to Assets/Resources
+                path = "Assets" + path[Application.dataPath.Length..] + "/";
+                defaultPath = path;
+            }
+            else
+            {
+                // Handles the case where the selected path is not within Resources
+                Debug.LogError("Selected path must be within Resources folder");
             }
         }
-        return Path;
+        return defaultPath;
     }
     private void DrawCollisionCheckboxes(int layerIndex)
     {
@@ -215,10 +241,9 @@ public class LayerCollisionMatrixEditor : CustomInformationEditor
             }
         }
     }
-    private void LoadCollisionMatrix(bool addExtension)
+    private void LoadCollisionMatrixWithExtension(bool addExtension)
     {
-        CollisionMatrixScript.Import(CollisionMatrixScript.ImportationPath + CollisionMatrixScript.AssetName, addExtension);
-        CollisionMatrixScript.ApplyData();
+        CollisionMatrixScript.ImportWithExtension(CollisionMatrixScript.ImportationPath + CollisionMatrixScript.AssetName, addExtension);
         CollisionMatrix = CollisionMatrixScript.CollisionMatrix;
     }
     private void ApplyCollisions()

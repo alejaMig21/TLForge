@@ -10,6 +10,10 @@ public class ResetValues : MonoBehaviour
     private GameObject targetObject;
     [SerializeField]
     private TLFCustomProperties customProperties;
+    [SerializeField]
+    private TLFCollisionMatrix2D matrix2D;
+    [SerializeField]
+    private TLFCollisionMatrix3D matrix3D;
     private Vector3 initialPosition = Vector3.zero;
     [SerializeField]
     private Rigidbody2D rBody2D = null;
@@ -24,6 +28,8 @@ public class ResetValues : MonoBehaviour
     public Vector3 InitialPosition { get => initialPosition; set => initialPosition = value; }
     public Rigidbody2D RBody2D { get => rBody2D; set => rBody2D = value; }
     public Rigidbody RBody3D { get => rBody3D; set => rBody3D = value; }
+    public TLFCollisionMatrix2D Matrix2D { get => matrix2D; set => matrix2D = value; }
+    public TLFCollisionMatrix3D Matrix3D { get => matrix3D; set => matrix3D = value; }
     #endregion
 
     #region METHODS
@@ -43,7 +49,9 @@ public class ResetValues : MonoBehaviour
         CustomProperties.CustomizeThenApplyTag("Untagged");
         CustomProperties.CustomizeThenApplyLayer("Default");
         TargetObject.transform.position = InitialPosition;
-        if(rBody2D != null)
+        Matrix2D.Import("EditorData/CollisionData/2D/", "TLForgeDemoMatrix2D");
+        Matrix3D.Import("EditorData/CollisionData/3D/", "TLForgeDemoMatrix3D");
+        if (rBody2D != null)
         {
             rBody2D.velocity = Vector3.zero;
         }
