@@ -128,6 +128,11 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
             ApplyCustomTag = false;
         }
     }
+    public void ApplyCustomizedTag(GameObject target)
+    {
+        this.Target = target;
+        ApplyCustomizedTag();
+    }
     public void CustomizeThenApplyTag()
     {
         if (Create_ApplyCustomTag)
@@ -142,8 +147,21 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
             Create_ApplyCustomTag = false;
         }
     }
+    public void CustomizeThenApplyTag(GameObject target)
+    {
+        this.Target = target;
+        CustomizeThenApplyTag();
+    }
     public void CustomizeThenApplyTag(string newTag)
     {
+        TagName = newTag;
+        Create_ApplyCustomTag = true;
+
+        CustomizeThenApplyTag();
+    }
+    public void CustomizeThenApplyTag(GameObject target, string newTag)
+    {
+        this.Target = target;
         TagName = newTag;
         Create_ApplyCustomTag = true;
 
@@ -195,6 +213,11 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
             ApplyCustomLayer = false;
         }
     }
+    public void ApplyCustomizedLayer(GameObject target)
+    {
+        this.Target = target;
+        ApplyCustomizedLayer();
+    }
     public void CustomizeThenApplyLayer()
     {
         if (Create_ApplyCustomLayer)
@@ -209,11 +232,23 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
             Create_ApplyCustomLayer = false;
         }
     }
+    public void CustomizeThenApplyLayer(GameObject target)
+    {
+        this.Target = target;
+        CustomizeThenApplyLayer();
+    }
     public void CustomizeThenApplyLayer(string newLayer)
     {
         LayerName = newLayer;
         Create_ApplyCustomLayer = true;
 
+        CustomizeThenApplyLayer();
+    }
+    public void CustomizeThenApplyLayer(GameObject target, string newLayer)
+    {
+        this.Target = target;
+        LayerName = newLayer;
+        Create_ApplyCustomLayer = true;
         CustomizeThenApplyLayer();
     }
     /// <summary>

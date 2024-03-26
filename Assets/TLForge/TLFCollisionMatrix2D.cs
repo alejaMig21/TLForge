@@ -1,20 +1,20 @@
 using UnityEngine;
 using System.IO;
 
-#if UNITY_EDITOR
-public class TLFLayerCollisionMatrix2D : MonoBehaviour, IDataExporter
+public class TLFCollisionMatrix2D : MonoBehaviour, IDataExporter
 {
     #region FIELDS
     [SerializeField]
     private bool[,] collisionMatrix = new bool[32, 32];
     [SerializeField]
     private string assetName = "LayerCollisionMatrix";
+    private string root = "Assets/Resources/";
     [SerializeField]
-    private string importationPath = "Assets/EditorData/CollisionData/";
+    private string importationPath = "Assets/Resources/EditorData/CollisionData/";
     [SerializeField]
     private bool startImport = false;
     [SerializeField]
-    private string exportationPath = "Assets/EditorData/CollisionData/";
+    private string exportationPath = "Assets/Resources/EditorData/CollisionData/";
     [SerializeField]
     private bool startExport = false;
     #endregion
@@ -27,9 +27,14 @@ public class TLFLayerCollisionMatrix2D : MonoBehaviour, IDataExporter
     public string ExportationPath { get => exportationPath; set => exportationPath = value; }
     public bool StartExport { get => startExport; set => startExport = value; }
     public ScriptableObject Data { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public string Root { get => root; set => root = value; }
     #endregion
 
     #region METHODS
+    private void Awake()
+    {
+        Import(ImportationPath, AssetName);
+    }
     public bool GetCollision(int layer1, int layer2)
     {
         return CollisionMatrix[layer1, layer2];
@@ -58,12 +63,13 @@ public class TLFLayerCollisionMatrix2D : MonoBehaviour, IDataExporter
         }
     }
     /// <summary>
-    /// Method to save collision matrix to a JSON file
+    /// Method to save collision matrix to a JSON file during Editor mode
     /// </summary>
     /// <param name="path"></param>
     /// <param name="assetName"></param>
     public void Export(string path, string assetName)
     {
+#if UNITY_EDITOR
         DirectoryManager.CreatePath(path);
 
         CollisionMatrixData data = new(collisionMatrix);
@@ -71,19 +77,27 @@ public class TLFLayerCollisionMatrix2D : MonoBehaviour, IDataExporter
         File.WriteAllText(path + assetName + ".json", json);
 
         Debug.Log("CollisionMatrix exported to: " + ExportationPath + AssetName);
+#endif
     }
     /// <summary>
-    /// Method to load collision matrix from a JSON file
+    /// Method to load collision matrix from a JSON file during Editor mode
     /// </summary>
     /// <param name="path"></param>
-    public void Import(string path)
+    public void ImportAsset(string path)
     {
+#if UNITY_EDITOR
         if (!File.Exists(path))
         {
             Debug.LogError("There is no CollisionMatrix to import at " + path);
             return;
         }
         string json = File.ReadAllText(path);
+        if (json == null)
+        {
+            // means there is no matrix preset
+            return;
+        }
+
         CollisionMatrixData data = JsonUtility.FromJson<CollisionMatrixData>(json);
 
         int rows = data.matrixData.Length;
@@ -98,16 +112,68 @@ public class TLFLayerCollisionMatrix2D : MonoBehaviour, IDataExporter
             }
         }
         // Debug.Log("CollisionMatrix imported from: " + ImportationPath + AssetName);
+
+        ApplyData();
+#endif
+    }
+    public void ImportResource(string resourcePath)
+    {
+        TextAsset textAsset = Resources.Load<TextAsset>(resourcePath.Replace(root, ""));
+        if (textAsset == null)
+        {
+            Debug.LogError("There is no CollisionMatrix to import at " + resourcePath);
+            return;
+        }
+        string json = textAsset.text;
+        if (json == null)
+        {
+            // means there is no matrix preset
+            return;
+        }
+
+        CollisionMatrixData data = JsonUtility.FromJson<CollisionMatrixData>(json);
+
+        int rows = data.matrixData.Length;
+        int cols = rows > 0 ? data.matrixData[0].array.Length : 0;
+
+        collisionMatrix = new bool[rows, cols];
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                collisionMatrix[i, j] = data.matrixData[i].array[j];
+            }
+        }
+
+        ApplyData();
     }
     /// <summary>
-    /// Method to load collision matrix from a JSON file
+    /// Method to load collision matrix from a JSON file during Editor/Runtime mode.
+    /// Extension can be added or not.
     /// </summary>
     /// <param name="path"></param>
-    public void Import(string path, bool addExtension)
+    public void ImportWithExtension(string path, bool addExtension)
     {
         string extension = !addExtension ? "" : ".json";
 
-        Import(path + extension);
+#if UNITY_EDITOR
+        ImportAsset(path + extension);
+#else
+        ImportResource(path + extension);
+#endif
+    }
+    /// <summary>
+    /// Method to load collision matrix from a JSON file during Editor/Runtime mode
+    /// </summary>
+    /// <param name="path"></param>
+    public void Import(string path, string assetName)
+    {
+        AssetName = assetName;
+#if UNITY_EDITOR
+        ImportWithExtension(ImportationPath + AssetName, true);
+#else
+        Import(ImportationPath + AssetName, false);
+#endif
     }
     /// <summary>
     /// Method to apply the collisions stored in the local matrix to the global Unity's Collision Matrix in Physics
@@ -126,6 +192,5 @@ public class TLFLayerCollisionMatrix2D : MonoBehaviour, IDataExporter
     {
         Physics2D.IgnoreLayerCollision(layer1, layer2, collisionValue);
     }
-    #endregion
+#endregion
 }
-#endif

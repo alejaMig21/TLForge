@@ -1,27 +1,27 @@
 using UnityEngine;
 using UnityEditor;
-using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 
-public class CreateCollisionManager
+public class CreateTLFTools
 {
     [MenuItem("GameObject/TLForge/CollisionManager2D", false, 1)]
     private static void CreateCollisionManager2D()
     {
-        CreateGameObject<TLFLayerCollisionMatrix2D>("CollisionManager2D");
+        CreateGameObject<TLFCollisionMatrix2D>("CollisionManager2D");
     }
 
     [MenuItem("GameObject/TLForge/CollisionManager3D", false, 2)]
     private static void CreateCollisionManager3D()
     {
-        CreateGameObject<TLFLayerCollisionMatrix3D>("CollisionManager3D");
+        CreateGameObject<TLFCollisionMatrix3D>("CollisionManager3D");
     }
 
     [MenuItem("GameObject/TLForge/Forge", false, 0)]
     private static void CreateForge()
     {
         GameObject forge = CreateGameObject<TLFCustomProperties>("TLForge");
-        forge.AddComponent<TLFLayerCollisionMatrix2D>();
-        forge.AddComponent<TLFLayerCollisionMatrix3D>();
+        forge.AddComponent<TLFCollisionMatrix2D>();
+        forge.AddComponent<TLFCollisionMatrix3D>();
     }
 
     private static GameObject CreateGameObject<T>(string name) where T : MonoBehaviour
@@ -29,6 +29,10 @@ public class CreateCollisionManager
         GameObject newGO = new(name);
 
         newGO.AddComponent<T>();
+
+        // Mark the scene as dirty to ensure changes need to be saved
+        Undo.RegisterCreatedObjectUndo(newGO, $"Create {name}");
+        EditorSceneManager.MarkSceneDirty(newGO.scene);
 
         // Optional: Select and focus the created GameObject in the hierarchy
         Selection.activeGameObject = newGO;

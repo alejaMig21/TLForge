@@ -4,7 +4,7 @@ using UnityEngine;
 /// Class that generates and removes Layers faster and easier.
 /// </summary>
 #if UNITY_EDITOR
-[RequireComponent(typeof(TLFLayerCollisionMatrix2D), typeof(TLFLayerCollisionMatrix3D))]
+[RequireComponent(typeof(TLFCollisionMatrix2D), typeof(TLFCollisionMatrix3D))]
 #endif
 public class TLFCustomLayer : TLFCustomProjectSetting, ICustomLayer
 {

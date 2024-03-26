@@ -13,7 +13,7 @@ public interface IDataImporter
     #endregion
 
     #region METHODS
-    public void Import(string path);
+    public void ImportAsset(string path);
     public void ApplyData();
     #endregion
 }
