@@ -128,9 +128,23 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
             ApplyCustomTag = false;
         }
     }
-    public void ApplyCustomizedTag(GameObject target)
+    /// <summary>
+    /// Apply an existing Tag to a given Target.
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="tagName"></param>
+    public void ApplyCustomizedTag(GameObject target, string tagName)
     {
-        this.Target = target;
+        if(target != null)
+        {
+            Target = target;
+        }
+        if(tagName != string.Empty)
+        {
+            TagName = tagName;
+        }
+        ApplyCustomTag = true;
+
         ApplyCustomizedTag();
     }
     public void CustomizeThenApplyTag()
@@ -147,22 +161,23 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
             Create_ApplyCustomTag = false;
         }
     }
-    public void CustomizeThenApplyTag(GameObject target)
-    {
-        this.Target = target;
-        CustomizeThenApplyTag();
-    }
-    public void CustomizeThenApplyTag(string newTag)
-    {
-        TagName = newTag;
-        Create_ApplyCustomTag = true;
-
-        CustomizeThenApplyTag();
-    }
+    /// <summary>
+    /// Define a Tag for a Target.
+    /// In Editor mode the Tag can be new.
+    /// In a Build the Tag needs to exists already.
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="newTag"></param>
     public void CustomizeThenApplyTag(GameObject target, string newTag)
     {
-        this.Target = target;
-        TagName = newTag;
+        if (target != null)
+        {
+            Target = target;
+        }
+        if (newTag != string.Empty)
+        {
+            TagName = newTag;
+        }
         Create_ApplyCustomTag = true;
 
         CustomizeThenApplyTag();
@@ -213,9 +228,18 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
             ApplyCustomLayer = false;
         }
     }
-    public void ApplyCustomizedLayer(GameObject target)
+    public void ApplyCustomizedLayer(GameObject target, string layerName)
     {
-        this.Target = target;
+        if(target != null)
+        {
+            Target = target;
+        }
+        if(layerName != string.Empty)
+        {
+            LayerName = layerName;
+        }
+        ApplyCustomLayer = true;
+
         ApplyCustomizedLayer();
     }
     public void CustomizeThenApplyLayer()
@@ -232,23 +256,18 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
             Create_ApplyCustomLayer = false;
         }
     }
-    public void CustomizeThenApplyLayer(GameObject target)
-    {
-        this.Target = target;
-        CustomizeThenApplyLayer();
-    }
-    public void CustomizeThenApplyLayer(string newLayer)
-    {
-        LayerName = newLayer;
-        Create_ApplyCustomLayer = true;
-
-        CustomizeThenApplyLayer();
-    }
     public void CustomizeThenApplyLayer(GameObject target, string newLayer)
     {
-        this.Target = target;
-        LayerName = newLayer;
+        if (target != null)
+        {
+            Target = target;
+        }
+        if (newLayer != string.Empty)
+        {
+            LayerName = newLayer;
+        }
         Create_ApplyCustomLayer = true;
+
         CustomizeThenApplyLayer();
     }
     /// <summary>

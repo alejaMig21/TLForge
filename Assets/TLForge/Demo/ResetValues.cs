@@ -46,8 +46,8 @@ public class ResetValues : MonoBehaviour
     }
     public void ResetProperties()
     {
-        CustomProperties.CustomizeThenApplyTag("Untagged");
-        CustomProperties.CustomizeThenApplyLayer("Default");
+        CustomProperties.CustomizeThenApplyTag(TargetObject, "Untagged");
+        CustomProperties.CustomizeThenApplyLayer(TargetObject, "Default");
         TargetObject.transform.position = InitialPosition;
         Matrix2D.Import("EditorData/CollisionData/2D/", "TLForgeDemoMatrix2D");
         Matrix3D.Import("EditorData/CollisionData/3D/", "TLForgeDemoMatrix3D");
