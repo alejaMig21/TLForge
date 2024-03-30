@@ -172,7 +172,7 @@ public class TLFCollisionMatrix2D : MonoBehaviour, IDataExporter
 #if UNITY_EDITOR
         ImportWithExtension(ImportationPath + AssetName, true);
 #else
-        Import(ImportationPath + AssetName, false);
+        ImportWithExtension(ImportationPath + AssetName, false);
 #endif
     }
     /// <summary>

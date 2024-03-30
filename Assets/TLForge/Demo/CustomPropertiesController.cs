@@ -48,13 +48,13 @@ public class CustomPropertiesController : MonoBehaviour
             return;
         }
 
-        NewTagButton.onClick.AddListener(() => CustomProperties.CustomizeThenApplyTag("TLForgeDemoTag"));
-        NewLayerButton.onClick.AddListener(() => CustomProperties.CustomizeThenApplyLayer("TLForgeDemoLayer"));
+        NewTagButton.onClick.AddListener(() => CustomProperties.CustomizeThenApplyTag(TargetObject, "TLForgeDemoTag"));
+        NewLayerButton.onClick.AddListener(() => CustomProperties.CustomizeThenApplyLayer(TargetObject, "TLForgeDemoLayer"));
         NewPresetButton.onClick.AddListener(() => Matrix2D.Import("EditorData/CollisionData/2D/", "TLForgeDemoMatrix2D_Alt"));
         NewPresetButton.onClick.AddListener(() => Matrix3D.Import("EditorData/CollisionData/3D/", "TLForgeDemoMatrix3D_Alt"));
 
-        OriginalTagButton.onClick.AddListener(() => CustomProperties.CustomizeThenApplyTag("Untagged"));
-        OriginalLayerButton.onClick.AddListener(() => CustomProperties.CustomizeThenApplyLayer("Default"));
+        OriginalTagButton.onClick.AddListener(() => CustomProperties.CustomizeThenApplyTag(TargetObject, "Untagged"));
+        OriginalLayerButton.onClick.AddListener(() => CustomProperties.CustomizeThenApplyLayer(TargetObject, "Default"));
         OriginalPresetButton.onClick.AddListener(() => Matrix2D.Import("EditorData/CollisionData/2D/", "TLForgeDemoMatrix2D"));
         OriginalPresetButton.onClick.AddListener(() => Matrix3D.Import("EditorData/CollisionData/3D/", "TLForgeDemoMatrix3D"));
     }
