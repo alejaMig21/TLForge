@@ -4,16 +4,16 @@ using UnityEditor.SceneManagement;
 
 public class CreateTLFTools
 {
-    [MenuItem("GameObject/TLForge/CollisionManager2D", false, 1)]
+    [MenuItem("GameObject/TLForge/2D Collision Manager", false, 1)]
     private static void CreateCollisionManager2D()
     {
-        CreateGameObject<TLFCollisionMatrix2D>("CollisionManager2D");
+        CreateGameObject<TLFCollisionMatrix2D>("2DCollisionManager");
     }
 
-    [MenuItem("GameObject/TLForge/CollisionManager3D", false, 2)]
+    [MenuItem("GameObject/TLForge/3D Collision Manager", false, 2)]
     private static void CreateCollisionManager3D()
     {
-        CreateGameObject<TLFCollisionMatrix3D>("CollisionManager3D");
+        CreateGameObject<TLFCollisionMatrix3D>("3DCollisionManager");
     }
 
     [MenuItem("GameObject/TLForge/Forge", false, 0)]

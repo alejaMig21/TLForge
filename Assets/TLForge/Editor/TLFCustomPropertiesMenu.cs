@@ -19,7 +19,7 @@ public class TLFCustomPropertiesMenu : EditorWindow
     [MenuItem("GameObject/TL -QUICK- Forge", false, 0)]
     static void Init()
     {
-        TLFCustomPropertiesMenu window = (TLFCustomPropertiesMenu)EditorWindow.GetWindow(typeof(TLFCustomPropertiesMenu), true, "CUSTOMIZE PROPERTIES");
+        TLFCustomPropertiesMenu window = (TLFCustomPropertiesMenu)EditorWindow.GetWindow(typeof(TLFCustomPropertiesMenu), true, "QUICK FORGE");
         window.Show();
         window.SelectedObj = Selection.activeGameObject;
     }

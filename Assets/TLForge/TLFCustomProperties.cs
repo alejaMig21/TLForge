@@ -131,8 +131,8 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
     /// <summary>
     /// Apply an existing Tag to a given Target.
     /// </summary>
-    /// <param name="target"></param>
-    /// <param name="tagName"></param>
+    /// <param name="target">Null value means a default reference defined by the component (which happens to be the component's gameObject)</param>
+    /// <param name="tagName">Empty value means the default tagName field</param>
     public void ApplyCustomizedTag(GameObject target, string tagName)
     {
         if(target != null)
@@ -166,8 +166,8 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
     /// In Editor mode the Tag can be new.
     /// In a Build the Tag needs to exists already.
     /// </summary>
-    /// <param name="target"></param>
-    /// <param name="newTag"></param>
+    /// <param name="target">Null value means a default reference defined by the component (which happens to be the component's gameObject)</param>
+    /// <param name="newTag">Empty value means the default tagName field</param>
     public void CustomizeThenApplyTag(GameObject target, string newTag)
     {
         if (target != null)
@@ -228,6 +228,11 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
             ApplyCustomLayer = false;
         }
     }
+    /// <summary>
+    /// Apply an existing Layer to a given Target.
+    /// </summary>
+    /// <param name="target">Null value means a default reference defined by the component (which happens to be the component's gameObject)</param>
+    /// <param name="layerName">Empty value means the default layerName field</param>
     public void ApplyCustomizedLayer(GameObject target, string layerName)
     {
         if(target != null)
@@ -256,6 +261,13 @@ public class TLFCustomProperties : TLFCustomProjectSetting, ICustomTag, ICustomL
             Create_ApplyCustomLayer = false;
         }
     }
+    /// <summary>
+    /// Define a Layer for a Target.
+    /// In Editor mode the Layer can be new.
+    /// In a Build the Layer needs to exists already.
+    /// </summary>
+    /// <param name="target">Null value means a default reference defined by the component (which happens to be the component's gameObject)</param>
+    /// <param name="newLayer">Empty value means the default layerName field</param>
     public void CustomizeThenApplyLayer(GameObject target, string newLayer)
     {
         if (target != null)
