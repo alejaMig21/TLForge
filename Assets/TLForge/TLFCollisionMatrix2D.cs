@@ -7,7 +7,7 @@ public class TLFCollisionMatrix2D : MonoBehaviour, IDataExporter
     [SerializeField]
     private bool[,] collisionMatrix = new bool[32, 32];
     [SerializeField]
-    private string assetName = "LayerCollisionMatrix";
+    private string assetName = "TLForgeDefaultMatrix";
     private string root = "Assets/Resources/";
     [SerializeField]
     private string importationPath = "Assets/Resources/EditorData/CollisionData/";
