@@ -5,9 +5,7 @@
 </p>
 
 ## What is TLForge?
-<p align="center">
-  <iframe width="560" height="315" src="(https://youtu.be/rY1nTzFOj48)" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen>
-</p>
+[![TLForge](https://img.youtube.com/vi/rY1nTzFOj48&t=2s)](https://www.youtube.com/watch?v=rY1nTzFOj48&t=2s)
     
 The Unity Tag and Layer Forge is an intuitive tool designed to streamline and enhance the workflow within Unity's development environment by enabling the creation, assignment, and deletion of Tags and Layers directly from the inspector of a GameObject. This extension circumvents the conventional need to navigate through Unity's engine settings, thus saving time and simplifying project organization.
 
